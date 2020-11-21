@@ -16,10 +16,13 @@ class RemoveChocolate(commands.Cog):
         # open(f"{os.getcwd()}\\config.json", "w+" || "r+") didn't work
         with open(f"{os.getcwd()}\\config.json", "r") as f:
             config = json.loads(f.read())
-        with open(f"{os.getcwd()}\\config.json", "w") as f:
-            config["chocolates"].remove(' '.join(toRemove))
-            f.write(json.dumps(config))
-        await ctx.send(f"{' '.join(toRemove)} was removed from the list of chocolates")
+        if " ".join(toRemove) in config["chocolates"]:
+            with open(f"{os.getcwd()}\\config.json", "w") as f:
+                config["chocolates"].remove(' '.join(toRemove))
+                f.write(json.dumps(config))
+            await ctx.send(f"{' '.join(toRemove)} was removed from the list of chocolates")
+        else:
+            await ctx.send(f"{' '.join(toRemove)} is not on the list of chocolates")
 
 
 def setup(bot):

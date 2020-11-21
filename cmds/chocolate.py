@@ -17,8 +17,8 @@ class Chocolate(commands.Cog):
         with open(f"{os.getcwd()}\\config.json", "r") as f:
             config = json.loads(f.read())
         try:
-            elise = ctx.guild.get_member("<elise's id>")
-            nick = random.choice(config["chocolates"])
+            elise = ctx.guild.get_member(<elise id>)
+            nick = f"{random.choice(config['chocolates'])}_Elise"
             await elise.edit(nick=nick)
             await ctx.send(f"Changed Elise's nickname to {nick}")
         except:
